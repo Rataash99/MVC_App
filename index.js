@@ -1,8 +1,15 @@
 import express from 'express';
+import path from 'path';
 
 import ProductController from './src/controllers/product.controller.js';
 
+// creating express server
 const server = express();
+
+// setup view engine
+server.set("view engine", "ejs");
+server.set("views", path.join(path.resolve(), "src", "views"));
+
 const productController = new ProductController();
 
 server.get('/', productController.getProducts);
