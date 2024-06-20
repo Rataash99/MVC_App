@@ -8,7 +8,17 @@ export default class ProductController{
         // return res.sendFile(
         //     path.join(path.resolve(), "src","views", "products.html") 
         // );
-        
+
+        res.render('products', {products: products});
+    }
+
+    getAddForm(req, res){
+        return res.render('new-product');
+    }
+
+    addNewProduct(req, res){
+        console.log(req.body);
+        let products = ProductModel.get();
         res.render('products', {products: products});
     }
 }
