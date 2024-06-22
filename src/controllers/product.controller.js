@@ -13,12 +13,13 @@ export default class ProductController{
     }
 
     getAddForm(req, res){
-        return res.render('new-product');
+        return res.render('new-product', {errorMessage : null});
     }
 
-    addNewProduct(req, res){
-        console.log(req.body);
+    // before adding something to server we need to validate the data  
+    addNewProduct(req, res, next){
+        ProductModel.add(req.body);
         let products = ProductModel.get();
-        res.render('products', {products: products});
-    }
+        res.render('products', {products});
+    } 
 }
