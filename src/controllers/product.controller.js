@@ -22,4 +22,5 @@ export default class ProductController{
         let products = ProductModel.get();
         res.render('products', {products});
     } 
+
 }

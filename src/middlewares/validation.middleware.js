@@ -8,7 +8,7 @@ import { body, validationResult } from "express-validator";
     console.log(req.body);
   // 1. setup Rules for validation
   const rules = [
-    body("name").isEmpty().withMessage("Name is required."),
+    body("name").notEmpty().withMessage("Name is required."),
     body("price")
       .isFloat({ gt: 0 })
       .withMessage("Price should be a Positive Integer."),
