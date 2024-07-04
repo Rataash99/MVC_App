@@ -4,8 +4,9 @@ import { body, validationResult } from "express-validator";
 // 2. class
 // 3. assigned expression
 // XX export default const validateRequest = (req, res, next) => {
-    const validateRequest = async (req, res, next) => {
-    console.log(req.body);
+
+const validateRequest = async (req, res, next) => {
+
   // 1. setup Rules for validation
   const rules = [
     body("name").notEmpty().withMessage("Name is required."),
@@ -20,7 +21,7 @@ import { body, validationResult } from "express-validator";
 
   // 3. check if there is any errors after running the rules
   let validationErrors = validationResult(req);
-  console.log(validationErrors.array());
+//   console.log(validationErrors.array());
 
   // 4 if errros, Return the error message
   if(!validationErrors.isEmpty()){

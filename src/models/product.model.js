@@ -6,6 +6,9 @@ export class ProductModel {
     this.price = _price;
     this.imageUrl = _imageUrl;
   }
+  static getById(id) {
+    return products.find((product) => product.id == id);
+  }
   static get() {
     return products;
   }
