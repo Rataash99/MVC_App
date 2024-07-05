@@ -12,6 +12,10 @@ export class ProductModel {
   static get() {
     return products;
   }
+  static update(updatedProduct){
+    const index = products.findIndex(product => product.id == updatedProduct.id );
+    products[index] = updatedProduct;
+  }
   static add(newProduct) {
     const product = new ProductModel(
       products.length + 1,

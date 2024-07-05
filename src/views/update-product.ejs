@@ -4,12 +4,13 @@
     <%= errorMessage %>
   </div>
 <% } %>
-<form action="/" method="post">
+<form action="/update-product" method="post">
     <input
     type="hidden"
     class="form-control"
-    id="name"
-    name="name"
+    id="id"
+    name="id"
+    value = "<%= product.id %>"
   />
   <div class="mb-3">
     <label for="name" class="form-label">Product Name</label>
@@ -18,19 +19,20 @@
       class="form-control"
       id="name"
       name="name"
+      value="<%= product.name %>"
     />
   </div>
   <div class="mb-3">
     <label for="desc" class="form-label">Product Description</label>
-    <textarea class="form-control" id="desc" rows="3" name="desc"></textarea>
+    <textarea class="form-control" id="desc" rows="3" name="desc" ><%= product.desc %></textarea>
   </div>
   <div class="mb-3">
     <label for="price" class="form-label">Price</label>
-    <input type="number" class="form-control" id="price" name="price"/>
+    <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" />
   </div>
   <div class="mb-3">
     <label class="form-label" for="imageUrl">Image URL</label>
-    <input type="url" class="form-control" id="imageUrl" name="imageUrl"/>
+    <input type="url" class="form-control" id="imageUrl" name="imageUrl" value="<%= product.imageUrl %>"/>
   </div>
   <button type="submit" class="btn btn-primary">Update Product</button>
 </form>

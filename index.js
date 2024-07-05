@@ -21,8 +21,10 @@ const productController = new ProductController();
 
 server.get('/', productController.getProducts);
 server.get('/new', productController.getAddForm);
-server.get('/update-product', productController.getUpdaateProductView);
+server.get('/update-product/:id', productController.getUpdatedProductView);
+
 server.post('/', validateRequest, productController.addNewProduct);
+server.post('/update-product', productController.postUpdatedProduct);
 
 server.use(express.static('src/views'));
 
