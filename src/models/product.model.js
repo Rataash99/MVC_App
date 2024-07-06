@@ -16,6 +16,15 @@ export class ProductModel {
     const index = products.findIndex(product => product.id == updatedProduct.id );
     products[index] = updatedProduct;
   }
+  static delete(id){
+    products = products.filter(product => id != product.id);
+    products = products.map((product, index) => {
+        return {
+            ...product,
+            id: index + 1
+        };
+    })
+  }
   static add(newProduct) {
     const product = new ProductModel(
       products.length + 1,

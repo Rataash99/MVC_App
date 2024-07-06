@@ -16,6 +16,7 @@ server.set("view engine", "ejs");
 server.set("views", path.join(path.resolve(), "src", "views"));
 
 server.use(ejsLayouts);
+server.use(express.static('public'));
 
 const productController = new ProductController();
 
@@ -23,6 +24,7 @@ server.get('/', productController.getProducts);
 server.get('/new', productController.getAddForm);
 server.get('/update-product/:id', productController.getUpdatedProductView);
 
+server.post('/delete-product/:id', productController.deleteProduct);
 server.post('/', validateRequest, productController.addNewProduct);
 server.post('/update-product', productController.postUpdatedProduct);
 

@@ -6,7 +6,7 @@
       <th scope="col">Description</th>
       <th scope="col">Price</th>
       <th scope="col">Image</th>
-      <th scope="col">Actions</th>
+      <th scope="col" class = "text-center">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -17,10 +17,12 @@
       <td><%= product.desc %></td>
       <td scope="col"><%= product.price %></td>
       <td>
-        <img src="<%= product.imageUrl %>" />
+        <img class="w-25" src="<%= product.imageUrl %>" />
       </td>
-      <td>
+      <td class = "text-center">
         <a href = '/update-product/<%= product.id %>' class="btn btn-warning">Update</a>
+        <button onclick = "deleteProduct('<%= product.id %>')" class = "btn btn-danger" >Delete</button>
+        <!-- <a href = '/delete-product/<%= product.id %>' class="btn btn-danger">Delete</a> -->
       </td>
     </tr>
     <% }) %>

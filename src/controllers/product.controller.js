@@ -38,6 +38,16 @@ export default class ProductController{
             next(error);
         }
     }
+    deleteProduct(req, res, next){
+        const {id} = req.params;
+        const productFound = ProductModel.getById(id);
+            if(!productFound){
+                return res.render('product-not-found');
+            }
+        ProductModel.delete(id);
+        let products = ProductModel.get();
+        res.render('products', {products});
+    }
     postUpdatedProduct(req, res, next){
         ProductModel.update(req.body);
         let products = ProductModel.get();
