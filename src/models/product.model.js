@@ -14,6 +14,7 @@ export class ProductModel {
   }
   static update(updatedProduct){
     const index = products.findIndex(product => product.id == updatedProduct.id );
+    
     products[index] = updatedProduct;
   }
   static delete(id){
@@ -25,13 +26,13 @@ export class ProductModel {
         };
     })
   }
-  static add(newProduct) {
+  static add(name, desc,price, imageUrl) {
     const product = new ProductModel(
       products.length + 1,
-      newProduct.name,
-      newProduct.desc,
-      newProduct.price,
-      newProduct.imageUrl
+      name,
+      desc,
+      price,
+      imageUrl
     );
     products.push(product);
   }

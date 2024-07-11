@@ -18,7 +18,9 @@ export default class ProductController{
 
     // before adding something to server we need to validate the data  
     addNewProduct(req, res, next){
-        ProductModel.add(req.body);
+        const {name, desc, price} = req.body;
+        const imageUrl = "images/" + req.file.filename; // when using multer we need to specify url as now it is getting saved into different location and not getting directly via UI.
+        ProductModel.add(name, desc, price, imageUrl);
         let products = ProductModel.get();
         res.render('products', {products});
     } 
@@ -49,6 +51,10 @@ export default class ProductController{
         res.render('products', {products});
     }
     postUpdatedProduct(req, res, next){
+        const {name, desc, price} = req.body;
+        const imageUrl = "images/" + req.file.filename; // when using multer we need to specify url as now it is getting saved into different location and not getting directly via UI.
+        req.body.imageUrl = imageUrl;
+        console.log(req.body);
         ProductModel.update(req.body);
         let products = ProductModel.get();
         res.render('products', {products});        
