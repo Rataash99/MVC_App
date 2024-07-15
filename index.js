@@ -6,6 +6,7 @@ import ProductController from "./src/controllers/product.controller.js";
 import UserController from "./src/controllers/user.controller.js";
 import validateRequest from "./src/middlewares/validation.middleware.js";
 import { uploadFile } from "./src/middlewares/file-upload.middleware.js";
+import validateRegisterRequest from "./src/middlewares/validateRegistration.middleware.js";
 
 // creating express server
 const server = express();
@@ -41,7 +42,11 @@ server.post(
     uploadFile.single("imageUrl"),
   productController.postUpdatedProduct
 );
-server.post("/register", usersController.postRegister);
+server.post(
+    "/register",
+    validateRegisterRequest, 
+    usersController.postRegister
+);
 server.post('/login', usersController.postLogin)
 
 server.use(express.static("src/views"));
