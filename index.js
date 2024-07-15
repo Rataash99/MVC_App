@@ -27,6 +27,7 @@ server.get("/", productController.getProducts);
 server.get("/new", productController.getAddForm);
 server.get("/update-product/:id", productController.getUpdatedProductView);
 server.get('/register', usersController.getRegister);
+server.get('/login', usersController.getLogin);
 
 server.post("/delete-product/:id", productController.deleteProduct);
 server.post(
@@ -40,6 +41,8 @@ server.post(
     uploadFile.single("imageUrl"),
   productController.postUpdatedProduct
 );
+server.post("/register", usersController.postRegister);
+server.post('/login', usersController.postLogin)
 
 server.use(express.static("src/views"));
 
