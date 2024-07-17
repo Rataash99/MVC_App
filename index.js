@@ -50,6 +50,7 @@ server.get(
 );
 server.get('/register', usersController.getRegister);
 server.get('/login', usersController.getLogin);
+server.get('/logout', usersController.logout);
 
 server.post("/delete-product/:id", productController.deleteProduct);
 server.post(

@@ -33,12 +33,18 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/new">Add Product</a>
                     </li>
+                    <% if(locals.userEmail){ %>
+                        <li class = 'nav-item'>
+                            <a href="/logout" aria-current="page" class="nav-link active">Logout</a>
+                        </li>
+                    <% } else {%>
                     <li class = 'nav-item'>
                         <a href="/register" aria-current="page" class="nav-link active">Register</a>
                     </li>
                     <li class = 'nav-item'>
                         <a href="/login" aria-current="page" class="nav-link active">Login</a>
                     </li>
+                    <% } %>
                 </ul>
             </div>
         </div>

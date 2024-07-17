@@ -9,11 +9,11 @@ export default class ProductController{
         //     path.join(path.resolve(), "src","views", "products.html") 
         // );
 
-        res.render('products', {products: products});
+        res.render('products', {products, userEmail: req.session.userEmail});
     }
 
     getAddForm(req, res){
-        return res.render('new-product', {errorMessage : null});
+        return res.render('new-product', {errorMessage : null, userEmail: req.session.userEmail});
     }
 
     // before adding something to server we need to validate the data  
@@ -22,7 +22,7 @@ export default class ProductController{
         const imageUrl = "images/" + req.file.filename; // when using multer we need to specify url as now it is getting saved into different location and not getting directly via UI.
         ProductModel.add(name, desc, price, imageUrl);
         let products = ProductModel.get();
-        res.render('products', {products});
+        res.render('products', {products, userEmail: req.session.userEmail});
     } 
 
     getUpdatedProductView(req, res, next){
@@ -48,15 +48,15 @@ export default class ProductController{
             }
         ProductModel.delete(id);
         let products = ProductModel.get();
-        res.render('products', {products});
+        res.render('products', {products, userEmail: req.session.userEmail});
     }
     postUpdatedProduct(req, res, next){
         const {name, desc, price} = req.body;
         const imageUrl = "images/" + req.file.filename; // when using multer we need to specify url as now it is getting saved into different location and not getting directly via UI.
         req.body.imageUrl = imageUrl;
-        console.log(req.body);
+        // console.log(req.body);
         ProductModel.update(req.body);
         let products = ProductModel.get();
-        res.render('products', {products});        
+        res.render('products', {products, userEmail: req.session.userEmail});        
     }
 }
