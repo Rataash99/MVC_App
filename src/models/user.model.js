@@ -18,7 +18,6 @@ export class UserModel{
         const result = users.find((user) => {
             return user.email == email && user.password == password;
         });
-        console.log("result : " + result);
         return result;
     }
 }
