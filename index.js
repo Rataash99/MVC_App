@@ -10,7 +10,7 @@ import validateRegisterRequest from "./src/middlewares/validateRegistration.midd
 import session from "express-session";
 import { auth } from "./src/middlewares/auth.middleware.js";
 import cookieParser from "cookie-parser";
-import { setLastVisit } from "./src/middlewares/lastVisit.middleware.js";
+import { getLastVisit, setLastVisit } from "./src/middlewares/lastVisit.middleware.js";
 
 // creating express server
 const server = express();
@@ -18,7 +18,7 @@ const server = express();
 // parse form data because the data will be present in format which browser won't be able to understand that's why we need a parser that converts the data present in req body to convert it into a format understandable by browser.
 server.use(express.urlencoded({ extended: true }));
 server.use(cookieParser());
-server.use(setLastVisit);
+server.use(getLastVisit); // available at application level
 
 // setup view engine
 server.set("view engine", "ejs");
@@ -75,7 +75,8 @@ server.post(
     validateRegisterRequest, 
     usersController.postRegister
 );
-server.post('/login', usersController.postLogin);
+// setLastVisit sets time at which you logged in
+server.post('/login', setLastVisit, usersController.postLogin);
 
 server.use(express.static("src/views"));
 
