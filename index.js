@@ -9,12 +9,16 @@ import { uploadFile } from "./src/middlewares/file-upload.middleware.js";
 import validateRegisterRequest from "./src/middlewares/validateRegistration.middleware.js";
 import session from "express-session";
 import { auth } from "./src/middlewares/auth.middleware.js";
+import cookieParser from "cookie-parser";
+import { setLastVisit } from "./src/middlewares/lastVisit.middleware.js";
 
 // creating express server
 const server = express();
 
 // parse form data because the data will be present in format which browser won't be able to understand that's why we need a parser that converts the data present in req body to convert it into a format understandable by browser.
 server.use(express.urlencoded({ extended: true }));
+server.use(cookieParser());
+server.use(setLastVisit);
 
 // setup view engine
 server.set("view engine", "ejs");
