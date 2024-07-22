@@ -30,7 +30,7 @@ export default class ProductController{
             const {id} = req.params;
             const productFound = ProductModel.getById(id);
             if(productFound){
-                res.render('update-product', {product: productFound, errorMessage: null});
+                res.render('update-product', {product: productFound, errorMessage: null, userEmail: req.session.userEmail});
             }
             else{
                 res.render("product-not-found");

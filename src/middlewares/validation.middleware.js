@@ -31,7 +31,11 @@ const validateRequest = async (req, res, next) => {
 
   // 4 if errros, Return the error message
   if(!validationErrors.isEmpty()){
-    return res.render('new-product', {
+    let view = 'new-product'; // default view
+    if (req.originalUrl.includes('update-product')) {
+      view = 'update-product'; // set view for update-product URL
+    }
+    return res.render(view, {
         errorMessage: validationErrors.array()[0].msg
     });
   }

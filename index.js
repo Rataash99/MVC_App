@@ -26,13 +26,15 @@ server.set("views", path.join(path.resolve(), "src", "views"));
 
 server.use(ejsLayouts);
 server.use(express.static("public"));
-server.use(session({
-    // In real projects key should be generated from a key generator, this is just for practice.
-    secret: 'SecretKey',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {secure: false},
-}));
+server.use(
+    session({
+        // In real projects key should be generated from a key generator, this is just for practice.
+        secret: 'SecretKey',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { secure : false },
+    })
+);
 
 const productController = new ProductController();
 const usersController = new UserController();
@@ -43,7 +45,7 @@ server.get(
     productController.getProducts
 );
 server.get(
-    "/new", 
+    "/new",
     auth,
     productController.getAddForm
 );
@@ -68,6 +70,7 @@ server.post(
     "/update-product",
     auth,
     uploadFile.single("imageUrl"),
+    validateRequest,
   productController.postUpdatedProduct
 );
 server.post(
