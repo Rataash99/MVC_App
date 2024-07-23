@@ -50,13 +50,14 @@ export default class ProductController{
         let products = ProductModel.get();
         res.render('products', {products, userEmail: req.session.userEmail});
     }
-    postUpdatedProduct(req, res, next){
+    postUpdateProduct(req, res, next){
         const {name, desc, price} = req.body;
         const imageUrl = "images/" + req.file.filename; // when using multer we need to specify url as now it is getting saved into different location and not getting directly via UI.
         req.body.imageUrl = imageUrl;
         // console.log(req.body);
         ProductModel.update(req.body);
         let products = ProductModel.get();
-        res.render('products', {products, userEmail: req.session.userEmail});        
+        // res.redirect('products', {products, userEmail: req.session.userEmail});     
+        res.redirect("/");
     }
 }

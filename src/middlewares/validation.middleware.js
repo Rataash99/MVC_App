@@ -32,14 +32,14 @@ const validateRequest = async (req, res, next) => {
   // 4 if errros, Return the error message
   if(!validationErrors.isEmpty()){
     let view = 'new-product'; // default view
+    let data = {errorMessage: validationErrors.array()[0].msg}
     if (req.originalUrl.includes('update-product')) {
+      data.product = { id: req.body.id, desc:req.body.desc , name: req.body.name, price: req.body.price, imageUrl: req.body.imageUrl };
       view = 'update-product'; // set view for update-product URL
     }
-    return res.render(view, {
-        errorMessage: validationErrors.array()[0].msg
-    });
+    data.userEmail = req.session.userEmail;
+    return res.render(view, data);
   }
-
   next();
 };
 

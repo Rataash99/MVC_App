@@ -71,7 +71,7 @@ server.post(
     auth,
     uploadFile.single("imageUrl"),
     validateRequest,
-  productController.postUpdatedProduct
+  productController.postUpdateProduct
 );
 server.post(
     "/register",
@@ -83,6 +83,6 @@ server.post('/login', setLastVisit, usersController.postLogin);
 
 server.use(express.static("src/views"));
 
-server.listen(3400, () => {
-  console.log("server is running on port 3400");
+server.listen(3000, () => {
+  console.log("server is running on port 3000");
 });
