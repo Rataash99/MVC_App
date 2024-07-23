@@ -83,6 +83,6 @@ server.post('/login', setLastVisit, usersController.postLogin);
 
 server.use(express.static("src/views"));
 
-server.listen(3000, () => {
-  console.log("server is running on port 3000");
+server.listen(3400, () => {
+  console.log("server is running on port 3400");
 });
