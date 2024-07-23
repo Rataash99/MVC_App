@@ -103,8 +103,8 @@ const validateRequest = async (req, res, next) => {
 
 export default validateRequest;
 
-### Session Middleware
-
+------------------------------------------------------------------------------------
+// Session Middleware
 import session from "express-session";
 
 server.use(
@@ -116,8 +116,8 @@ server.use(
   })
 );
 
-### LastVisit Middleware
-
+------------------------------------------------------------------------------------
+// LastVisit Middleware
 export const setLastVisit = (req, res, next) => {
   res.cookie('lastVisit', new Date().toISOString(), {
     maxAge: 2 * 24 * 60 * 60 * 1000,
