@@ -2,6 +2,10 @@
 
 Welcome to the Inventory Management App! This application helps you manage your inventory seamlessly, allowing you to add, update, delete, and view products with ease. Built with Node and Express, it ensures a robust and scalable solution for inventory management.
 
+### Screenshot
+
+![View](./public/images/ss.png)
+
 ## Features
 
 - **Add Products:** Easily add new products to your inventory.
